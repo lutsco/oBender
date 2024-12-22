@@ -13,14 +13,15 @@ public class CLI implements Runnable {
     private String userInput;
 
     public void displayAvailablePrompts(Map<String, String> prompts) {
-        System.out.println(ansi().fgBrightBlue().a("Available prompts:").reset());
+        System.out.println("Available prompts:");
         int index = 1;
         for (Map.Entry<String, String> entry : prompts.entrySet()) {
-            System.out.println(index + ". " + entry.getValue());
-            index++;
+            System.out.println(index++ + ". " + entry.getValue());
         }
         System.out.println("Type the number of your choice or enter a custom question.");
     }
+
+
 
     public void displayResponse(String prompt, String response) {
         System.out.println(ansi().fgGreen().a("Prompt: ").fgYellow().a(prompt).reset());

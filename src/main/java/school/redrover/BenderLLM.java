@@ -49,7 +49,7 @@ public class BenderLLM implements Callable<Integer> {
                 return 1;
             }
 
-            cli.displayAvailablePrompts();
+            cli.displayAvailablePrompts(promptManager.getPrompts(userInput));
 
             String prompt = determinePrompt(userInput);
             if ("exit".equalsIgnoreCase(userInput)) {
@@ -88,7 +88,7 @@ public class BenderLLM implements Callable<Integer> {
     }
 
     private String determinePrompt(String userInput) {
-        String prompt = promptManager.getPrompt(userInput);
+        String prompt = promptManager.getPrompts(userInput).toString();
         return "Unknown prompt.".equals(prompt) ? userInput : prompt;
     }
 

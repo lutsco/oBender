@@ -24,15 +24,10 @@ public class PromptManager {
         prompts.put("setback", "How would you handle a sudden setback?");
     }
 
-    public String getPrompt(String key) {
-        String prompt = prompts.getOrDefault(key, "Unknown prompt.");
-        if ("Unknown prompt.".equals(prompt)) {
-            logger.warn("Unknown prompt requested: {}", key);
-        } else {
-            logger.info("Retrieved prompt: {}", prompt);
-        }
-        return prompt;
+    public Map<String, String> getPrompts(String userInput) {
+        return prompts; // Return the map of all prompts
     }
+
 
     public void addPrompt(String key, String prompt) {
         prompts.put(key, prompt);
