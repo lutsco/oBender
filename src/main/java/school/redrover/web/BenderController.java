@@ -1,0 +1,48 @@
+package school.redrover.web;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import school.redrover.api.OpenAIClient;
+import school.redrover.data.ResponseCache;
+
+@RestController
+@RequestMapping("/api/bender")
+public class BenderController {
+
+    private static final Logger logger = LoggerFactory.getLogger(BenderController.class);
+
+    private final OpenAIClient llm = new OpenAIClient();
+    private final ResponseCache cache = new ResponseCache();
+
+    @PostMapping("/ask")
+    public String askBender(@RequestBody String prompt) {
+        if (prompt == null || prompt.trim().isEmpty()) {
+            logger.warn("Received empty or null prompt.");
+            return "Error: Prompt cannot be null or empty.";
+        }
+        logger.info("Received prompt: {}", prompt);
+
+        if (cache.isCached(prompt)) {
+            logger.info("Returning cached response for prompt: {}", prompt);
+            return cache.getResponse(prompt);
+        }
+
+        try {
+            String response = llm.getResponse(prompt);
+            if (response == null || response.trim().isEmpty()) {
+                logger.warn("Received empty response from OpenAI for prompt: {}", prompt);
+                return "Error: Received an empty response from the AI.";
+            }
+            cache.saveResponse(prompt, response);
+            logger.info("Response generated and cached: {}", response);
+            return response;
+        } catch (Exception e) {
+            logger.error("Error generating response: {}", e.getMessage());
+            return "Error: " + e.getMessage();
+        }
+    }
+}
