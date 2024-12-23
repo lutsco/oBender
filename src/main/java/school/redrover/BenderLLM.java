@@ -83,6 +83,7 @@ public class BenderLLM implements Callable<Integer> {
     }
 
     private String determinePrompt(String userInput) {
+        // Grab the map of prompts
         Map<String, String> allPrompts = promptManager.getPrompts();
 
         try {
