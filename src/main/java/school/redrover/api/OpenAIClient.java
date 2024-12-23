@@ -12,7 +12,6 @@ public class OpenAIClient {
 
     private static final Logger logger = LoggerFactory.getLogger(OpenAIClient.class);
 
-    // Make these configurable via constructor or Spring injection
     private final String apiUrl;
     private final String apiKey;
     private final String model;

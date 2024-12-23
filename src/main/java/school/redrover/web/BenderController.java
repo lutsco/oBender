@@ -9,7 +9,7 @@ import school.redrover.data.ResponseCache;
 @RestController
 @RequestMapping("/api/bender")
 public class BenderController {
-    private static final Logger git log --oneline
+    private static final Logger
             logger = LoggerFactory.getLogger(BenderController.class);
 
     private final OpenAIClient llm = new OpenAIClient(
