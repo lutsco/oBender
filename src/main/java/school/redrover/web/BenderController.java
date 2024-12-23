@@ -2,17 +2,13 @@ package school.redrover.web;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import school.redrover.api.OpenAIClient;
 import school.redrover.data.ResponseCache;
 
 @RestController
 @RequestMapping("/api/bender")
 public class BenderController {
-
     private static final Logger logger = LoggerFactory.getLogger(BenderController.class);
 
     private final OpenAIClient llm = new OpenAIClient(
@@ -50,5 +46,10 @@ public class BenderController {
             logger.error("Error generating response: {}", e.getMessage());
             return "Error: " + e.getMessage();
         }
+    }
+
+    @GetMapping("/ask")
+    public String handleGetRequest() {
+        return "This endpoint only supports POST requests. Please submit a valid prompt using POST.";
     }
 }
