@@ -5,14 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="251e9a75-3ac4-4541-801b-baa8127ed2f8" name="Changes" comment="Updated files">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/school/redrover/BenderApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/school/redrover/BenderApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/logback.xml" beforeDir="false" afterPath="$PROJECT_DIR$/logs/logback.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,9 +18,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="XML Properties File" />
-        <option value="HTML File" />
         <option value="Class" />
         <option value="package-info" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -37,21 +32,21 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "lutsco"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;lutsco&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/lutsco/oBender.git",
-    "accountId": "45efd30d-2d00-4fb8-b9d0-d5159e1fc76d"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/lutsco/oBender.git&quot;,
+    &quot;accountId&quot;: &quot;45efd30d-2d00-4fb8-b9d0-d5159e1fc76d&quot;
   }
-}]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 6
-}]]></component>
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
   <component name="ProjectId" id="2qZCjwKoiw33pWo5E5VEcXVnGH9" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
@@ -62,23 +57,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.BenderApplication.executor": "Run",
-    "Application.BenderLLM.executor": "Run",
-    "DefaultHtmlFileTemplate": "HTML File",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "lutsco/redirecting",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/michaelluts/IdeaProjects/oBender/src/main/resources",
-    "onboarding.tips.debug.path": "/Users/michaelluts/IdeaProjects/oBender/src/main/java/school/redrover/Main.java"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.BenderApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.BenderLLM.executor&quot;: &quot;Run&quot;,
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/michaelluts/IdeaProjects/oBender/src/main/resources&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;/Users/michaelluts/IdeaProjects/oBender/src/main/java/school/redrover/Main.java&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/resources" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/static/js" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/logs" />
       <recent name="$PROJECT_DIR$/src/main/resources" />
@@ -88,7 +84,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.BenderLLM">
+  <component name="RunManager" selected="Application.BenderApplication">
     <configuration name="BenderApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="school.redrover.BenderApplication" />
       <module name="oBender" />
@@ -117,8 +113,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.BenderLLM" />
         <item itemvalue="Application.BenderApplication" />
+        <item itemvalue="Application.BenderLLM" />
       </list>
     </recent_temporary>
   </component>
