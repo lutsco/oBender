@@ -15,7 +15,13 @@ public class BenderController {
 
     private static final Logger logger = LoggerFactory.getLogger(BenderController.class);
 
-    private final OpenAIClient llm = new OpenAIClient();
+    private final OpenAIClient llm = new OpenAIClient(
+            "https://api.openai.com/v1/completions",
+            "your-api-key",
+            "text-davinci-003",
+            100,
+            0.7
+    );
     private final ResponseCache cache = new ResponseCache();
 
     @PostMapping("/ask")
@@ -28,7 +34,7 @@ public class BenderController {
 
         if (cache.isCached(prompt)) {
             logger.info("Returning cached response for prompt: {}", prompt);
-            return cache.getResponse(prompt);
+            return String.valueOf(cache.getResponse(prompt));
         }
 
         try {

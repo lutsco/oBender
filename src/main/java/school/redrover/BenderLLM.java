@@ -9,6 +9,7 @@ import school.redrover.data.ResponseCache;
 import school.redrover.ui.CLI;
 
 import java.io.IOException;
+import java.util.Map;
 import java.util.concurrent.Callable;
 
 @CommandLine.Command(
@@ -34,7 +35,13 @@ public class BenderLLM implements Callable<Integer> {
     private final StringBuilder conversationHistory;
 
     public BenderLLM() {
-        this.llm = new OpenAIClient();
+        this.llm = new OpenAIClient(
+                "https://api.openai.com/v1/completions",
+                "your-api-key",
+                "text-davinci-003",
+                100,
+                0.7
+        );
         this.promptManager = new PromptManager();
         this.cache = new ResponseCache();
         this.cli = new CLI();
@@ -49,30 +56,18 @@ public class BenderLLM implements Callable<Integer> {
                 return 1;
             }
 
-            cli.displayAvailablePrompts(promptManager.getPrompts(userInput));
-
-            String prompt = determinePrompt(userInput);
             if ("exit".equalsIgnoreCase(userInput)) {
                 System.out.println("Exiting BenderLLM. Goodbye!");
                 return 0;
             }
 
-            String response;
+            cli.displayAvailablePrompts(promptManager.getPrompts());
+            String prompt = determinePrompt(userInput);
 
-            if (cache.isCached(prompt)) {
-                response = cache.getResponse(prompt);
-                logger.info("Prompt (from cache): {}", prompt);
-                logger.info("Response (from cache): {}", response);
-            } else {
-                response = llm.getResponse(prompt);
-                cache.saveResponse(prompt, response);
-                logger.info("Prompt: {}", prompt);
-                logger.info("Response: {}", response);
-            }
+            String response = processPrompt(prompt);
 
             addToConversationHistory("User", prompt);
             addToConversationHistory("Bender", response);
-
             cli.displayResponse(prompt, response);
             cli.displayConversationHistory(conversationHistory.toString());
 
@@ -88,8 +83,36 @@ public class BenderLLM implements Callable<Integer> {
     }
 
     private String determinePrompt(String userInput) {
-        String prompt = promptManager.getPrompts(userInput).toString();
-        return "Unknown prompt.".equals(prompt) ? userInput : prompt;
+        // Grab the map of prompts
+        Map<String, String> allPrompts = promptManager.getPrompts();
+
+        try {
+            int index = Integer.parseInt(userInput);
+            var promptList = allPrompts.values().stream().toList();
+            if (index >= 1 && index <= promptList.size()) {
+                return promptList.get(index - 1);
+            }
+        } catch (NumberFormatException ignored) {
+        }
+
+        return allPrompts.getOrDefault(userInput, userInput);
+    }
+
+    private String processPrompt(String prompt) throws IOException {
+        String response;
+
+        if (cache.isCached(prompt)) {
+            response = String.valueOf(cache.getResponse(prompt));
+            logger.info("Prompt (from cache): {}", prompt);
+            logger.info("Response (from cache): {}", response);
+        } else {
+            response = llm.getResponse(prompt);
+            cache.saveResponse(prompt, response);
+            logger.info("Prompt: {}", prompt);
+            logger.info("Response: {}", response);
+        }
+
+        return response;
     }
 
     private void addToConversationHistory(String role, String message) {

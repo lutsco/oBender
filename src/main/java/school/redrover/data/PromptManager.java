@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -15,19 +16,41 @@ public class PromptManager {
     private final Map<String, String> prompts = new HashMap<>();
 
     public PromptManager() {
-        // Add predefined prompts
-        prompts.put("success", "What is the key to success?");
-        prompts.put("strategy", "How would you handle a complex strategy?");
-        prompts.put("escape", "Plan a bold escape from a difficult situation.");
-        prompts.put("money-making", "Generate a money-making plan.");
-        prompts.put("argument", "Give advice for winning an argument.");
-        prompts.put("setback", "How would you handle a sudden setback?");
+        loadDefaultPrompts();
     }
 
-    public Map<String, String> getPrompts(String userInput) {
-        return prompts; // Return the map of all prompts
+    private void loadDefaultPrompts() {
+        try (InputStream input = getClass().getResourceAsStream("/prompts_default.properties")) {
+            if (input == null) {
+                logger.warn("prompts_default.properties not found in resources. Using fallback prompts.");
+                prompts.put("success", "What is the key to success?");
+                prompts.put("strategy", "How would you handle a complex strategy?");
+                prompts.put("escape", "Plan a bold escape from a difficult situation.");
+                prompts.put("money-making", "Generate a money-making plan.");
+                prompts.put("argument", "Give advice for winning an argument.");
+                prompts.put("setback", "How would you handle a sudden setback?");
+                return;
+            }
+
+            Properties properties = new Properties();
+            properties.load(input);
+
+            for (String key : properties.stringPropertyNames()) {
+                prompts.put(key, properties.getProperty(key));
+            }
+            logger.info("Loaded default prompts from prompts_default.properties");
+        } catch (IOException e) {
+            logger.error("Error reading prompts_default.properties", e);
+        }
     }
 
+    public Map<String, String> getPrompts() {
+        return Collections.unmodifiableMap(prompts);
+    }
+
+    public String getPrompt(String key) {
+        return prompts.get(key);
+    }
 
     public void addPrompt(String key, String prompt) {
         prompts.put(key, prompt);
@@ -52,36 +75,14 @@ public class PromptManager {
         }
     }
 
-    public void displayScenarios() {
-        System.out.println("Predefined scenarios:");
+    public Map<String, String> searchPrompts(String keyword) {
+        Map<String, String> results = new HashMap<>();
+        String lowerCaseKeyword = keyword.toLowerCase();
         for (Map.Entry<String, String> entry : prompts.entrySet()) {
-            System.out.println("- " + entry.getKey() + ": " + entry.getValue());
-        }
-    }
-
-    public void searchPrompts(String keyword) {
-        System.out.println("Search results for keyword: " + keyword);
-        for (Map.Entry<String, String> entry : prompts.entrySet()) {
-            if (entry.getValue().toLowerCase().contains(keyword.toLowerCase())) {
-                System.out.println("- " + entry.getKey() + ": " + entry.getValue());
+            if (entry.getValue().toLowerCase().contains(lowerCaseKeyword)) {
+                results.put(entry.getKey(), entry.getValue());
             }
         }
-    }
-
-    public void loadPrompts(String language) {
-        Properties properties = new Properties();
-        try (InputStream input = getClass().getResourceAsStream("/prompts_" + language + ".properties")) {
-            if (input == null) {
-                System.out.println("Sorry, unable to find prompts for language: " + language);
-                return;
-            }
-            properties.load(input);
-            for (String key : properties.stringPropertyNames()) {
-                prompts.put(key, properties.getProperty(key));
-            }
-            logger.info("Prompts loaded for language: {}", language);
-        } catch (IOException ex) {
-            logger.error("Error loading prompts for language: {}", language, ex);
-        }
+        return results;
     }
 }
