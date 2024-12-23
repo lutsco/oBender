@@ -1,5 +1,3 @@
-/* styles.css */
-
 body {
     font-family: Arial, sans-serif;
     background-color: #f7f9fc;
@@ -9,22 +7,20 @@ body {
 }
 
 main {
-    /* Center the main content and make it wider */
     width: 80%;
-    max-width: 800px;   /* You can adjust this to your preference (e.g., 1000px) */
-    margin: 40px auto;  /* Center horizontally and add top/bottom spacing */
+    max-width: 800px;
+    margin: 40px auto;
     padding: 20px;
 }
 
 h1 {
     color: #16a085;
     font-size: 2.5em;
-    text-align: center; /* Center the heading text */
+    text-align: center;
     margin-bottom: 30px;
 }
 
 form {
-    /* Place input and button in a row and center them */
     display: flex;
     justify-content: center;
     margin-bottom: 20px;
@@ -32,12 +28,12 @@ form {
 
 input {
     padding: 10px;
-    width: 400px;        /* Increase as needed */
-    max-width: 100%;     /* Ensures responsiveness */
+    width: 400px;
+    max-width: 100%;
     margin-right: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
-    box-sizing: border-box; /* Keeps padding from increasing total width */
+    box-sizing: border-box;
 }
 
 button {
@@ -60,7 +56,7 @@ button:hover {
     border: 1px solid #ccc;
     border-radius: 5px;
     background-color: #f9f9f9;
-    white-space: pre-wrap; /* Preserve line breaks for multiline text */
+    white-space: pre-wrap;
 }
 
 .error {

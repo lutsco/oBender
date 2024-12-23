@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.PropertySource;
 
 @SpringBootApplication
-@PropertySource("file:local.properties")  // Explicitly load local.properties
+@PropertySource("file:local.properties")
 
 public class BenderApplication {
     private static final Logger logger = LoggerFactory.getLogger(BenderApplication.class);
